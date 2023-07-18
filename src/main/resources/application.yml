@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+spring:
+  batch:
+    job:
+      enabled: false
+  datasource:
+    hikari:
+      connection-timeout: 1200000
+      maximum-pool-size: 5
+      minimum-idle: 2
+      pool-name: data-source
+    url: jdbc:postgresql://localhost:5432/spring?currentSchema=batch
+    username: postgres
+    password: admin123
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        format_sql: true
+        default_schema: batch
+        jdbc:
+          batch_size: 10
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+    enabled: true
+    liquibase-schema: batch
+    default-schema: batch
+    
+
+files-base-directory: '/home/baloghlan/spring-batch-example/'
